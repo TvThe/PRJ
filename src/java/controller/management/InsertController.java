@@ -5,79 +5,57 @@
  */
 package controller.management;
 
+import controller.auth.Authentic;
+import dal.DepartmentDBContext;
+import dal.StaffDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Department;
+import model.Staff;
 
-/**
- *
- * @author LENNOVO
- */
-public class InsertController extends HttpServlet {
+public class InsertController extends Authentic {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet InsertController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet InsertController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        DepartmentDBContext db = new DepartmentDBContext();
+        ArrayList<Department> depts = db.getDepts();
+        request.setAttribute("depts", depts);
+        request.getRequestDispatcher("/view/Staff/insert.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String raw_id = request.getParameter("id");
+        String raw_name = request.getParameter("name");
+        String raw_gender = request.getParameter("gender");
+        String raw_phone = request.getParameter("phone");
+        String raw_did = request.getParameter("did");
+
+        int id = Integer.parseInt(raw_id);
+        int did = Integer.parseInt(raw_did);
+        String name = raw_name; //check length
+        boolean gender = raw_gender.equals("male");
+        String phone = raw_phone;
+
+        Department d = new Department();
+        d.setId(did);
+        Staff s = new Staff();
+        s.setId(id);
+        s.setName(name);
+        s.setGender(gender);
+        s.setPhone(phone);
+        s.setDept(d);
+
+        StaffDBContext db = new StaffDBContext();
+        db.insertStaff(s);
+        response.sendRedirect("search");
+
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

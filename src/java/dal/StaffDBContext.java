@@ -49,4 +49,51 @@ public class StaffDBContext extends DBContext {
         }
         return staffs;
     }
+    public void insertStaff(Staff s)
+    {
+        String sql = "INSERT INTO [Staff]\n" +
+                        "           ([sid]\n" +
+                        "           ,[sname]\n" +
+                        "           ,[gender]\n" +
+                        "           ,[phone]\n" +
+                        "           ,[did])\n" +
+                        "     VALUES\n" +
+                        "           (?\n" +
+                        "           ,?\n" +
+                        "           ,?\n" +
+                        "           ,?\n" +
+                        "           ,?)";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, s.getId());
+            stm.setString(2, s.getName());
+            stm.setBoolean(3, s.isGender());
+            stm.setString(4, s.getPhone());
+            stm.setInt(5, s.getDept().getId());
+            stm.executeUpdate(); //INSERT UPDATE DELETE
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            if(stm != null)
+            {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(connection !=null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+    }
 }
