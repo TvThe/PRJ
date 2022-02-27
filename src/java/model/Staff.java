@@ -14,7 +14,15 @@ public class Staff {
     private String name;
     private boolean gender;
     private String phone;
-    private String email;
+    private Department dept;
+
+    public Department getDept() {
+        return dept;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
 
     public int getId() {
         return id;
@@ -47,13 +55,4 @@ public class Staff {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
 }
