@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Account;
 
-/**
- *
- * @author LENNOVO
- */
 public class Authentic extends HttpServlet {
 
     @Override
@@ -31,9 +27,9 @@ public class Authentic extends HttpServlet {
         String User = request.getParameter("username");
         String Pass = request.getParameter("password");
         AccountDBContext log = new AccountDBContext();
-        Account account =log.getAccount(User, Pass);
+        Account account = log.getAccount(User, Pass);
         if(account!=null){
-            response.getWriter().println("Login Successful!");
+            response.sendRedirect("search");
         }
         else{
             response.getWriter().println("Login Failed!");
