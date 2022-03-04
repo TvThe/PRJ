@@ -5,7 +5,7 @@
  */
 package controller.management;
 
-import controller.auth.Authentic;
+import controller.auth.BaseAuthenticationController;
 import dal.DepartmentDBContext;
 import dal.StaffDBContext;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Department;
 import model.Staff;
 
-public class InsertController extends Authentic {
+public class InsertController extends BaseAuthenticationController {
 
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,7 +53,6 @@ public class InsertController extends Authentic {
         StaffDBContext db = new StaffDBContext();
         db.insertStaff(s);
         response.sendRedirect("search");
-
     }
 
     @Override
