@@ -8,32 +8,43 @@ package controller.auth;
 import dal.AccountDBContext;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Account;
-
 public class Authentic extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/view/Auth/login.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Auth/login.jsp").forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String User = request.getParameter("username");
-        String Pass = request.getParameter("password");
-        AccountDBContext log = new AccountDBContext();
-        Account account = log.getAccount(User, Pass);
-        if(account!=null){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        AccountDBContext db = new AccountDBContext();
+        Account account = db.getAccount(username, password);
+        if (account != null) {
+            request.getSession().setAttribute("account", account);
+            String remember = request.getParameter("remember");
+            if (remember != null) {
+                Cookie c_user = new Cookie("username", username);
+                Cookie c_pass = new Cookie("password", password);
+                c_user.setMaxAge(24 * 3600 * 7);
+                c_pass.setMaxAge(24 * 3600 * 7);
+                response.addCookie(c_user);
+                response.addCookie(c_pass);
+            }
             response.sendRedirect("search");
+        } else {
+            response.getWriter().println("login failed!");
         }
-        else{
-            response.getWriter().println("Login Failed!");
-        }
+
     }
 
     @Override

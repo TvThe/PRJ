@@ -79,7 +79,6 @@ public abstract class BaseAuthenticationController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (isAuthenticated(request)) {
-            //process business
             processPost(request, response);
         } else {
             response.getWriter().println("access denied!");
