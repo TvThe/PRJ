@@ -18,6 +18,7 @@ import model.Staff;
 
 public class InsertController extends BaseAuthenticationController {
 
+    @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DepartmentDBContext db = new DepartmentDBContext();
@@ -26,6 +27,7 @@ public class InsertController extends BaseAuthenticationController {
         request.getRequestDispatcher("/view/Staff/insert.jsp").forward(request, response);
     }
 
+    @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
