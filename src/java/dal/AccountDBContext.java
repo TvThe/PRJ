@@ -44,9 +44,9 @@ public class AccountDBContext extends DBContext{
     {
         try {
             String sql = "SELECT COUNT(*) as Total \n" +
-                "	FROM Account a INNER JOIN [Permission-Account] pa ON a.username = pa.username\n" +
-                "					INNER JOIN [Permission] p ON pa.pid = p.pid\n" +
-                "					INNER JOIN [Permission-Feature] pf ON pf.pid = p.pid\n" +
+                "	FROM Account a INNER JOIN Permission_Account pa ON a.username = pa.username\n" +
+                "					INNER JOIN Permission p ON pa.pid = p.pid\n" +
+                "					INNER JOIN Permission_Feature pf ON pf.pid = p.pid\n" +
                 "					INNER JOIN Feature f ON f.fid = pf.fid\n" +
                 "	WHERE a.username = ? AND f.url = ?";
             PreparedStatement stm = connection.prepareStatement(sql);

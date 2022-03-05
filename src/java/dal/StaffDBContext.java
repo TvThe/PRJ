@@ -49,6 +49,73 @@ public class StaffDBContext extends DBContext {
         }
         return staffs;
     }
+    
+    public Staff getStaffs(int id)
+    {
+        try {
+            String sql = "SELECT s.sid,s.sname,s.gender,s.dob,d.did,d.dname FROM \n" +
+                    "Student s INNER JOIN Department d ON s.did = d.did WHERE s.sid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                Staff s = new Staff();
+                s.setId(rs.getInt("sid"));
+                s.setName(rs.getString("sname"));
+                s.setGender(rs.getBoolean("gender"));
+                s.setPhone(rs.getString("phone"));
+                Department d = new Department();
+                d.setId(rs.getInt("did"));
+                d.setName(rs.getString("dname"));
+                s.setDept(d);
+                return s;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public void updateStaff(Staff s)
+    {
+        String sql = "UPDATE [Staff]\n" +
+                    "   SET [sname] = ?\n" +
+                    "      ,[gender] = ?\n" +
+                    "      ,[phone] = ?\n" +
+                    "      ,[did] = ?\n" +
+                    " WHERE [sid] = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(5, s.getId());
+            stm.setString(1, s.getName());
+            stm.setBoolean(2, s.isGender());
+            stm.setString(3, s.getPhone());
+            stm.setInt(4, s.getDept().getId());
+            stm.executeUpdate(); //INSERT UPDATE DELETE
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            if(stm != null)
+            {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(connection !=null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
     public void insertStaff(Staff s)
     {
         String sql = "INSERT INTO [Staff]\n" +
@@ -94,6 +161,38 @@ public class StaffDBContext extends DBContext {
                 }
             }
         }
-        
+    }
+    
+    public void deleteStaff(int id)
+    {
+        String sql = "DELETE [Staff]\n" +
+                    " WHERE [sid] = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.executeUpdate(); //INSERT UPDATE DELETE
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            if(stm != null)
+            {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(connection !=null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 }
