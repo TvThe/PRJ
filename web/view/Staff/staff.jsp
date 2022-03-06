@@ -11,8 +11,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Staff</title>
+        <title>Staff List</title>
         <%
             ArrayList<Department> depts = (ArrayList<Department>) request.getAttribute("depts");
             ArrayList<Staff> staffs = (ArrayList<Staff>) request.getAttribute("staffs");
@@ -24,7 +25,7 @@
                 document.getElementById("searchForm").submit();
             }
 
-            function deleteStudent(id)
+            function deleteStaff(id)
             {
                 var result = confirm("Are you sure?");
                 if (result)
@@ -48,15 +49,15 @@
             </select> <br/>
         </form>
         <br/>
-        <% if (staffs.size() > 0) { %>
         <table border="1px">
             <tr>
-                <td>Id</td>
+                <td>Id </td>
                 <td>Name</td>
                 <td>Gender</td>
                 <td>Phone</td>
                 <td>Department</td>
-                <td></td>
+                <td>Edit</td>
+                <td>Del</td>
             </tr>
             <% for (Staff s : staffs) {
             %>
@@ -70,22 +71,27 @@
                     <%
                     } else {
                     %>
-                        <a>Female</a>
+                    <a>Female</a>
                     <%
-                    }
+                        }
                     %>
                 </td>
                 <td><%=s.getPhone()%></td>
                 <td><%=s.getDept().getName()%></td>
-                <td><a href="edit?id=<%=s.getId()%>">Edit</a> 
-                    <a href="#" onclick="deleteStudent(<%=s.getId()%>);" >Delete</a></td>
+                <td> <a href="edit?id=<%=s.getId()%>"> <img src="image/edit.png"> </a> </td>
+                <td><a href="#" onclick="deleteStaff(<%=s.getId()%>);" > <img src="image/delete.png"></a></td>
             </tr>
             <%}%>
-        </table>
-        <%}else {%>
-        No record to display.
-        <%}%>
-        <br/>
-        <a href="insert">Insert</a>
+        </table><br>
+        <button> <a href="insert">New Staff</a> </button>
+
+        <div class="footer">
+
+            <p>Address: 167 Tran Dang Ninh, Dich Vong Ward, Cau Giay District, Hanoi City </p>
+            <p>Tel: 024 2242 9701 - 024 6327 8065</p>
+            <p>Hotline: 0987 039 663 - 0915 018 968</p>
+            <p>Email : Linhanh.co@gmail.com  ||  Website: www.dichthuatlinhanh.com.vn</p>
+
+        </div>
     </body>
 </html>

@@ -10,8 +10,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert</title>
+        <title>Insert Page</title>
         <%
             ArrayList<Department> depts = 
                     (ArrayList<Department>) request.getAttribute("depts");
@@ -32,5 +33,14 @@
             </select> <br/>
             <input type="submit" value="Save"/>
         </form>
+            
+            <div class="footer">
+            
+            <p>Address: 167 Tran Dang Ninh, Dich Vong Ward, Cau Giay District, Hanoi City </p>
+            <p>Tel: 024 2242 9701 - 024 6327 8065</p>
+            <p>Hotline: 0987 039 663 - 0915 018 968</p>
+            <p>Email : Linhanh.co@gmail.com  ||  Website: www.dichthuatlinhanh.com.vn</p>
+
+        </div>
     </body>
 </html>
