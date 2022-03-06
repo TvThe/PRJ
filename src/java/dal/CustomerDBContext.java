@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.PreparedStatement;
@@ -12,6 +7,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Customer;
+import model.Staff;
 
 /**
  *
@@ -22,7 +18,8 @@ public class CustomerDBContext extends DBContext {
     {
         ArrayList<Customer> customers = new ArrayList<>();
         try {
-            String sql = "SELECT cname,phone FROM Customer";
+            String sql = "SELECT s.sname,c.cname,c.phone FROM \n" +
+                    "Customer c INNER JOIN Staff s ON c.sid = s.sid\n";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while(rs.next())
@@ -30,6 +27,9 @@ public class CustomerDBContext extends DBContext {
                 Customer c = new Customer();
                 c.setName(rs.getString("cname"));
                 c.setPhone(rs.getString("phone"));
+                Staff s = new Staff();
+                s.setName(rs.getString("sname"));
+                c.setStaff(s);
                 customers.add(c);
             }
         } catch (SQLException ex) {

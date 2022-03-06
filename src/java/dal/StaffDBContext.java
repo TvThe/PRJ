@@ -53,8 +53,8 @@ public class StaffDBContext extends DBContext {
     public Staff getStaffs(int id)
     {
         try {
-            String sql = "SELECT s.sid,s.sname,s.gender,s.dob,d.did,d.dname FROM \n" +
-                    "Student s INNER JOIN Department d ON s.did = d.did WHERE s.sid = ?";
+            String sql = "SELECT s.sid,s.sname,s.gender,s.phone,d.did,d.dname FROM \n" +
+                    "Staff s INNER JOIN Department d ON s.did = d.did WHERE s.sid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
