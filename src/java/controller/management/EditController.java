@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.management;
 
 import controller.auth.BaseAuthenticationController;
@@ -16,10 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Department;
 import model.Staff;
 
-/**
- *
- * @author SAP-LAP-FPT
- */
 public class EditController extends BaseAuthenticationController {
 
     @Override
@@ -41,7 +32,7 @@ public class EditController extends BaseAuthenticationController {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String raw_id = request.getParameter("id");
+        String raw_id = request.getParameter("id");
         String raw_name = request.getParameter("name");
         String raw_gender = request.getParameter("gender");
         String raw_phone = request.getParameter("phone");
