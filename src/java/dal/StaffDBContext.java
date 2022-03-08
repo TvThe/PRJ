@@ -14,11 +14,26 @@ import java.util.logging.Logger;
 import model.Department;
 import model.Staff;
 
-/**
- *
- * @author Sap-lap
- */
 public class StaffDBContext extends DBContext {
+    public ArrayList<Staff> getStaff()
+    {
+        ArrayList<Staff> staffs = new ArrayList<>();
+        try {
+            String sql = "SELECT sid,sname FROM Staff";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next())
+            {
+                Staff s = new Staff();
+                s.setId(rs.getInt("sid"));
+                s.setName(rs.getString("sname"));
+                staffs.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return staffs;
+    }
     public ArrayList<Staff> getStaff(int did)
     {
         ArrayList<Staff> staffs = new ArrayList<>();

@@ -1,6 +1,6 @@
-package controller.management;
+package controller.customer;
 
-import dal.DepartmentDBContext;
+import dal.CustomerDBContext;
 import dal.StaffDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,24 +8,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Department;
+import model.Customer;
 import model.Staff;
 
 public class SearchController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DepartmentDBContext dbDept = new DepartmentDBContext();
-        ArrayList<Department> depts = dbDept.getDepts();
-        request.setAttribute("depts", depts);
-        String raw_did = request.getParameter("did");
-        raw_did = (raw_did==null || raw_did.length() ==0)?"-1":raw_did;
-        int did = Integer.parseInt(raw_did);
-        StaffDBContext dbStudent = new StaffDBContext();
-        ArrayList<Staff> staffs = dbStudent.getStaff(did);
+        StaffDBContext dbStaff = new StaffDBContext();
+        ArrayList<Staff> staffs = dbStaff.getStaff(0);
         request.setAttribute("staffs", staffs);
-        request.setAttribute("did", did);
-        request.getRequestDispatcher("view/Staff/staff.jsp").forward(request, response);
+        CustomerDBContext dbCustomer = new CustomerDBContext();
+        ArrayList<Customer> customer = dbCustomer.getCustomer();
+        request.setAttribute("customer", customer);
+        request.getRequestDispatcher("../view/Customer/Customer.jsp").forward(request, response);
+
     }
 
     @Override

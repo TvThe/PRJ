@@ -1,14 +1,14 @@
-package controller.management;
+package controller.customer;
 
 import controller.auth.BaseAuthenticationController;
-import dal.DepartmentDBContext;
+import dal.CustomerDBContext;
 import dal.StaffDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Department;
+import model.Customer;
 import model.Staff;
 
 public class EditController extends BaseAuthenticationController {
@@ -18,15 +18,15 @@ public class EditController extends BaseAuthenticationController {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         
-        DepartmentDBContext deptDB = new DepartmentDBContext();
-        ArrayList<Department> depts = deptDB.getDepts();
-        request.setAttribute("depts", depts);
-        
         StaffDBContext staffDB = new StaffDBContext();
-        Staff staff = staffDB.getStaffs(id);
-        request.setAttribute("staff", staff);
+        ArrayList<Staff> staffs = staffDB.getStaff();
+        request.setAttribute("staffs", staffs);
         
-        request.getRequestDispatcher("view/Staff/edit.jsp").forward(request, response);
+        CustomerDBContext customerDB = new CustomerDBContext();
+        Customer customer = customerDB.getCustomers(id);
+        request.setAttribute("customer", customer);
+        
+        request.getRequestDispatcher("../view/Customer/edit.jsp").forward(request, response);
     }
 
     @Override
@@ -34,29 +34,25 @@ public class EditController extends BaseAuthenticationController {
             throws ServletException, IOException {
         String raw_id = request.getParameter("id");
         String raw_name = request.getParameter("name");
-        String raw_gender = request.getParameter("gender");
         String raw_phone = request.getParameter("phone");
-        String raw_did = request.getParameter("did");
+        String raw_sid = request.getParameter("sid");
         
         int id = Integer.parseInt(raw_id);
-        int did = Integer.parseInt(raw_did);
+        int sid = Integer.parseInt(raw_sid);
         String name = raw_name; //check length
-        boolean gender = raw_gender.equals("male");
         String phone = raw_phone;
         
-        Department d = new Department();
-        d.setId(did);
         Staff s = new Staff();
-        s.setId(id);
-        s.setName(name);
-        s.setGender(gender);
-        s.setPhone(phone);
-        s.setDept(d);
-        StaffDBContext db = new StaffDBContext();
-        db.updateStaff(s);
-        
-        //response.getWriter().println("Student " + s.getId() + " is already added!");
-        response.sendRedirect("search");
+        s.setId(sid);
+        Customer c = new Customer();
+        c.setId(id);
+        c.setName(name);
+        c.setPhone(phone);
+        c.setStaff(s);
+        CustomerDBContext db = new CustomerDBContext();
+        db.updateCustomer(c);
+
+        response.sendRedirect("../customer/search");
     }
     @Override
     public String getServletInfo() {
