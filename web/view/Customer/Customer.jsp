@@ -12,47 +12,53 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Customer List</title>
         <%
             ArrayList<Customer> customer = (ArrayList<Customer>) request.getAttribute("customer");
             ArrayList<Staff> staffs = (ArrayList<Staff>) request.getAttribute("staffs");
-            int sid = (Integer) request.getAttribute("sid");
         %>
         <script>
-            function deleteStudent(id)
+            function deleteCustomer(id)
             {
                 var result = confirm("Are you sure?");
                 if (result)
                 {
-                    window.location.href = "delete?id=" + id;
+                    window.location.href = "deletecustomer?id=" + id;
                 }
             }
 
         </script>
     </head>
     <body>
-        <br/>
+
         <table border="1px">
             <tr>
+                <td>ID</td>
+                <td>STAFF'S</td>                
                 <td>CUSTOMER'S NAME</td>
                 <td>PHONE</td>
-                <td></td>
-                <td>STAFF'S</td>
+                <td>Document</td>
+                <td>Edit</td>
+                <td>Del</td>
             </tr>
             <% for (Customer c : customer) {
             %>
             <tr>
+                <td><%= c.getId() %></td>
+                <td><%=c.getStaff().getName()%></td>
                 <td><%=c.getName()%></td>
                 <td><%=c.getPhone()%></td>
-                <td><a href="#">Document</a> </td>
-                <td><%=c.getStaff().getName()%></td>
+                <td><a href="">Document</a> </td>
+                <td> <a href="editcustomer?id=<%=c.getId()%>"> <img src="image/edit.png"> </a> </td>
+                <td><a href="#" onclick="deleteCustomer(<%= c.getId() %>);" > <img src="image/delete.png"></a></td>
+                
             </tr>
             <%}%>
         </table>
         <br/>
-        <button> <a href="../customer/insert">New Customer</a> </button>
+        <button> <a href="insertcustomer">New Customer</a> </button>
         
         <div class="footer">
             

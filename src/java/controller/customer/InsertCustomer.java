@@ -7,7 +7,6 @@ package controller.customer;
 
 import controller.auth.BaseAuthenticationController;
 import dal.CustomerDBContext;
-import dal.DepartmentDBContext;
 import dal.StaffDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,10 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Customer;
-import model.Department;
 import model.Staff;
 
-public class InsertController extends BaseAuthenticationController {
+public class InsertCustomer extends BaseAuthenticationController {
 
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +24,7 @@ public class InsertController extends BaseAuthenticationController {
         StaffDBContext db = new StaffDBContext();
         ArrayList<Staff> staffs = db.getStaff();
         request.setAttribute("staffs", staffs);
-        request.getRequestDispatcher("../view/Customer/insert.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Customer/insert.jsp").forward(request, response);
     }
 
     @Override
@@ -50,7 +48,7 @@ public class InsertController extends BaseAuthenticationController {
 
         CustomerDBContext db = new CustomerDBContext();
         db.insertCustomer(c);
-        response.sendRedirect("../customer/search");
+        response.sendRedirect("searchcustomer");
     }
 
     @Override

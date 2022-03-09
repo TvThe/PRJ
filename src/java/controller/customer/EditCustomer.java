@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Customer;
 import model.Staff;
 
-public class EditController extends BaseAuthenticationController {
+public class EditCustomer extends BaseAuthenticationController {
 
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +26,7 @@ public class EditController extends BaseAuthenticationController {
         Customer customer = customerDB.getCustomers(id);
         request.setAttribute("customer", customer);
         
-        request.getRequestDispatcher("../view/Customer/edit.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Customer/edit.jsp").forward(request, response);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class EditController extends BaseAuthenticationController {
         CustomerDBContext db = new CustomerDBContext();
         db.updateCustomer(c);
 
-        response.sendRedirect("../customer/search");
+        response.sendRedirect("searchcustomer");
     }
     @Override
     public String getServletInfo() {

@@ -65,7 +65,7 @@ public abstract class BaseAuthenticationController extends HttpServlet {
             //process business
             processGet(request, response);
         } else {
-            response.getWriter().println("access denied!");
+            response.getWriter().print("access denied!");
         }
     }
 

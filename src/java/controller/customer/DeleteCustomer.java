@@ -12,18 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author SAP-LAP-FPT
- */
-public class DeleteController extends BaseAuthenticationController {
+public class DeleteCustomer extends BaseAuthenticationController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String phone = request.getParameter("phone");
+        int id = Integer.parseInt(request.getParameter("id"));
         CustomerDBContext db = new CustomerDBContext();
-        db.deleteCustomer(phone);
-        response.sendRedirect("customer/search");
+        db.deleteCustomer(id);
+        response.sendRedirect("searchcustomer");
     }
 
     @Override

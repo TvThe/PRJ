@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Customer;
 import model.Staff;
 
-public class SearchController extends HttpServlet {
+public class SearchCustomer extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class SearchController extends HttpServlet {
         CustomerDBContext dbCustomer = new CustomerDBContext();
         ArrayList<Customer> customer = dbCustomer.getCustomer();
         request.setAttribute("customer", customer);
-        request.getRequestDispatcher("../view/Customer/Customer.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/Customer/Customer.jsp").forward(request, response);
 
     }
 

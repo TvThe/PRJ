@@ -21,20 +21,20 @@
         <servlet-class>controller.management.DeleteController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchCustomerController</servlet-name>
-        <servlet-class>controller.customer.SearchController</servlet-class>
+        <servlet-name>SearchCustomer</servlet-name>
+        <servlet-class>controller.customer.SearchCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InsertCustomerController</servlet-name>
-        <servlet-class>controller.customer.InsertController</servlet-class>
+        <servlet-name>InsertCustomer</servlet-name>
+        <servlet-class>controller.customer.InsertCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteCustomerController</servlet-name>
-        <servlet-class>controller.customer.DeleteController</servlet-class>
+        <servlet-name>EditCustomer</servlet-name>
+        <servlet-class>controller.customer.EditCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditCustomerController</servlet-name>
-        <servlet-class>controller.customer.EditController</servlet-class>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <servlet-class>controller.customer.DeleteCustomer</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AuthenticController</servlet-name>
@@ -57,20 +57,20 @@
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchCustomerController</servlet-name>
-        <url-pattern>/customer/search</url-pattern>
+        <servlet-name>SearchCustomer</servlet-name>
+        <url-pattern>/searchcustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InsertCustomerController</servlet-name>
-        <url-pattern>/customer/insert</url-pattern>
+        <servlet-name>InsertCustomer</servlet-name>
+        <url-pattern>/insertcustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteCustomerController</servlet-name>
-        <url-pattern>/customer/delete</url-pattern>
+        <servlet-name>EditCustomer</servlet-name>
+        <url-pattern>/editcustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditCustomerController</servlet-name>
-        <url-pattern>/customer/edit</url-pattern>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <url-pattern>/deletecustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

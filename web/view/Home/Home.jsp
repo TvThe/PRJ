@@ -18,7 +18,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="search">Staff List</a></li>
                     <li><a href="insert">Add New Staff</a></li>
-                    <li><a href="customer">Customer List</a></li>
+                    <li><a href="searchcustomer">Customer List</a></li>
                 </ul>
 
             </div>
