@@ -10,8 +10,8 @@
 <%@page import="model.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-    
+<html>
+    <head>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Customer Page</title>
@@ -21,7 +21,7 @@
 
             Customer c = (Customer) request.getAttribute("customer");
         %>
-    
+    </head>
     <body>
         <form action="editcustomer" method="POST">
             Id: <%=c.getId()%> <input type="hidden" name="id" value="<%=c.getId()%>"/> <br/>
@@ -47,4 +47,5 @@
 
         </div>
     </body>
+</html>>
 

@@ -51,7 +51,8 @@ public class EditCustomer extends BaseAuthenticationController {
         c.setStaff(s);
         CustomerDBContext db = new CustomerDBContext();
         db.updateCustomer(c);
-
+        
+        //response.getWriter().println("Student " + s.getId() + " is already added!");
         response.sendRedirect("searchcustomer");
     }
     @Override
