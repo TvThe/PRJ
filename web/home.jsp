@@ -13,15 +13,27 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <div class="header-home">
+        <div class="logo">
+                <img src="image/logo.png">
+                <p><span style="color:red">Dịch</span> <span style="color:green ">Thuật</span><span style="color:blue"> Linh</span> <span style="color:yellow">Anh</span></p>
+            </div>
         <div class="menu">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="search">Staff List</a></li>
-                    <li><a href="insert">Add New Staff</a></li>
-                    <li><a href="searchcustomer">Customer List</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Introduce</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="search">Staff</a></li>
+                    <li><a href="insert">Add Staff</a></li>
+                    <li><a href="searchcustomer">Customer</a></li>
+                    <li><a href="login"> Log Out</a></li>
                 </ul>
-
             </div>
+        </div>
+        
+        <div>
+            <img src="image/banner1.png">
+        </div>
         
         <div class="footer">
             

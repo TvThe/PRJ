@@ -1,31 +1,435 @@
+.header-home menu{
+    padding-bottom: 200px;
+}
 .header-home{
     display: flex;
+    justify-content: space-around;
+    height: 210px;
+    margin-bottom: 30px;
 }
-.menu{
-    margin: auto 0;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-.menu ul{
+.menu a{
+    text-decoration: none;
     display: flex;
-    list-style: none;
+    color: black;
+    margin-top: 100px;
+    font-size: 30px;
+    margin-left: 35px;
 }
 
-.menu a{
+.menu ul{
     display: flex;
-    margin-top: 50px;
+    list-style-type: none;
+    margin-top:20px;
+}
+
+.footer{
+    background-color: rgba(0,0,0,0.3);
+    text-align: center;
+    padding:10px;
+    color: white;
+
+}
+.logo{
+    margin: 2%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.header-login{
+    text-align: center;
+    font-size:50px;
+}
+.banner img{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+body {
+    font-family: sans-serif;
+    background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+.login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.login-box form a {
+    position: relative;
     display: inline-block;
-    margin: 1%;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.login-box a:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+}
+
+.login-box a span {
+    position: absolute;
+    display: block;
+}
+
+.login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+    50%,100% {
+        left: 100%;
+    }
+}
+
+.login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+    50%,100% {
+        top: 100%;
+    }
+}
+
+.login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+    50%,100% {
+        right: 100%;
+    }
+}
+
+.login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+    50%,100% {
+        bottom: 100%;
+    }
+}
+
+.customer {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.customer-table{
+    margin: 20px auto;
+    width:650px;
+    text-align: center;
+    font-size: 30px;
+}
+.customer .add{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    background-color: #03e9f4;
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    margin-left: 100px;
+}
+
+.insert-customer{
+    font-size: 30px;
+    text-align: center;
+}
+.insert-customer table{
+    margin-left: 720px;
+}
+.insert-customer table input{
+    height: 30px;
+    margin-bottom: 3px;
+    width: 300px;
+}
+.insert-customer table select{
+    height: 30px;
+    margin-bottom: 3px;
+    width: 300px;
+    font-size: 20px;
+}
+.insert-customer .save{
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    margin-bottom: 260px;
+}
+.staff-table{
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+.staff-table .table{
+    padding-left: 500px;
+    padding-bottom: 20px;
+    font-size: 30px;
+}
+.staff-table .add{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    background-color: #03e9f4;
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+}
+.staff-table .search-staff select{
+    height: 25px;
+}
+.insert-staff{
+    text-align: center;
+    font-size: 30px;
+}
+.insert-staff .input{
+    height: 30px;
+    width: 90%;
+    margin-bottom: 4px;
+}
+.insert-staff select{
+    height: 30px;
+    width: 90%;
+    margin-bottom: 4px;
+}
+.insert-staff .gender{
+    height: 20px;
+    width: auto;
+}
+.insert-staff table{
+    margin-left: 750px;
+}
+.insert-staff .save{
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    margin-bottom: 150px;
+}
+.edit-customer{
+    text-align: center;
+    font-size: 30px;
+    padding-top: 30px;
+}
+.edit-customer table{
+    text-align: center;
+    margin-left: 800px;
+    font-size: 30px;
+}
+.edit-customer table input{
+    height: 30px;
+    width: 90%;
+    margin-bottom: 4px;
+}
+.edit-customer table select{
+    height: 30px;
+    width: 90%;
+    margin-bottom: 4px;
+}
+.edit-customer .save{
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    margin-bottom: 150px;
+}
+.document{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.document .table{
+    margin-left: 730px;
+    margin-bottom: 20px;
+}
+.document .add{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    background-color: #03e9f4;
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+}
+.document p{
+    font-size: 30px;
+}
+.insert-document{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 170px;
+    margin-top: 100px;
+
+}
+.insert-document table{
+    margin-left: 800px;
+}
+.insert-document input{
+    height: 25px;
+    width: 90%;
+    margin-bottom: 4px;
+}
+.insert-document select{
+    height: 30px;
+    width: 90%;
+    margin-bottom: 4px;
+    font-size: 20px;
+    text-align: center;
+}
+.insert-document button{
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+.insert-document p{
+    margin-left: 50px;
+}
+.edit-staff{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 200px;
+    margin-top: 50px;
+}
+.edit-staff .table{
+    margin-left: 720px;
+}
+.edit-staff .input{
+    width: 90%;
+    height: 25px;
+    margin-bottom: 4px;
+    font-size: 20px;
+}
+.edit-staff select{
+    width: 90%;
+    height: 25px;
+    margin-bottom: 4px;
+    font-size: 20px;  
+}
+.edit-staff .save{
+    width: 100px;
+    height: 30px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+.container{
+    font-size: 20px;
+    margin-left: 890px;
+    margin-bottom: 30px;
+    width: 20px;
+    height: 20px;
+}
+.container a{
+    background: white;
+    text-decoration: none;
     padding: 10px;
     color: black;
+    font-weight: bold;
+}
+.container span{
+    background: white;
     text-decoration: none;
-}
-.footer{
-    text-align: center;
-    background-color: lightblue;
-    padding:10px;
-    margin-top: 20px;
-}
-.header-home p{
-    font-size: 30px;
+    padding: 10px;
+    color: red;
+    font-weight: bold;
 }

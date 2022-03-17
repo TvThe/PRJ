@@ -42,7 +42,7 @@ public class Authentic extends HttpServlet {
                     response.addCookie(c_user);
                     response.addCookie(c_pass);
                 }
-                request.getRequestDispatcher("view/Home/Home.jsp").forward(request, response);
+                request.getRequestDispatcher("home.jsp").forward(request, response);
             } else {
                 response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

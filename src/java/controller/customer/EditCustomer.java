@@ -32,12 +32,10 @@ public class EditCustomer extends BaseAuthenticationController {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String raw_id = request.getParameter("id");
         String raw_name = request.getParameter("name");
         String raw_phone = request.getParameter("phone");
         String raw_sid = request.getParameter("sid");
         
-        int id = Integer.parseInt(raw_id);
         int sid = Integer.parseInt(raw_sid);
         String name = raw_name; //check length
         String phone = raw_phone;
@@ -45,15 +43,14 @@ public class EditCustomer extends BaseAuthenticationController {
         Staff s = new Staff();
         s.setId(sid);
         Customer c = new Customer();
-        c.setId(id);
         c.setName(name);
         c.setPhone(phone);
         c.setStaff(s);
         CustomerDBContext db = new CustomerDBContext();
         db.updateCustomer(c);
         
-        //response.getWriter().println("Student " + s.getId() + " is already added!");
         response.sendRedirect("searchcustomer");
+
     }
     @Override
     public String getServletInfo() {

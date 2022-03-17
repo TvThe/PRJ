@@ -37,6 +37,26 @@
         </script>
     </head>
     <body>
+        <div class="header-home">
+            <div class="logo">
+                <img src="image/logo.png">
+                <p><span style="color:red">Dịch</span> <span style="color:green ">Thuật</span><span style="color:blue"> Linh</span> <span style="color:yellow">Anh</span></p>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="#">Introduce</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="search">Staff</a></li>
+                    <li><a href="insert">Add Staff</a></li>
+                    <li><a href="searchcustomer">Customer</a></li>
+                    <li><a href="login"> Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="staff-table">
+            <div class="search-staff">
         <form id="searchForm" method="GET" action="search"> 
             Department: <select name="did" onchange="submitSearchForm();">
                 <option value="-1">----SELECT A DEPARTMENT----</option>
@@ -49,6 +69,8 @@
             </select> <br/>
         </form>
         <br/>
+            </div>
+            <div class="table">
         <table border="1px">
             <tr>
                 <td>Id </td>
@@ -82,9 +104,15 @@
                 <td><a href="#" onclick="deleteStaff(<%=s.getId()%>);" > <img src="image/delete.png"></a></td>
             </tr>
             <%}%>
-        </table><br>
-        <button> <a href="insert">New Staff</a> </button>
-
+        </table>
+            </div>
+        <a href="insert" class="add">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                New Staff</a>
+        </div>
         <div class="footer">
 
             <p>Address: 167 Tran Dang Ninh, Dich Vong Ward, Cau Giay District, Hanoi City </p>

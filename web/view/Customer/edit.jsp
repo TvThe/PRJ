@@ -1,8 +1,3 @@
-<%-- 
-    Document   : edit
-    Created on : Feb 10, 2022, 1:06:01 PM
-    Author     : SAP-LAP-FPT
---%>
 
 <%@page import="model.Customer"%>
 <%@page import="model.Staff"%>
@@ -23,21 +18,72 @@
         %>
     </head>
     <body>
-        <form action="editcustomer" method="POST">
-            Id: <%=c.getId()%> <input type="hidden" name="id" value="<%=c.getId()%>"/> <br/>
-            Name: <input type="name" name="name" value="<%=c.getName()%>" /> <br/>
-            Phone: <input type="text" name="phone" value="<%=c.getPhone()%>" /> <br/>
-            Staff: <select name="sid">
-                <% for (Staff s : staffs) {
-                %>
-                <option  
-                    <%=(c.getStaff().getId() == s.getId()) ? "selected=\"selected\"" : ""%>
-                    value="<%=s.getId()%>"><%=s.getName()%></option>
-                <%}%>
-            </select> <br/>
-            <input type="submit" value="Save"/>
-        </form>
+        <div class="header-home">
+            <div class="logo">
+                <img src="image/logo.png">
+                <p><span style="color:red">Dịch</span> <span style="color:green ">Thuật</span><span style="color:blue"> Linh</span> <span style="color:yellow">Anh</span></p>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="#">Introduce</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="search">Staff</a></li>
+                    <li><a href="searchcustomer">Customer</a></li>
+                    <li><a href="login"> Log Out</a></li>
+                </ul>
+            </div>
+        </div>
 
+
+        <div class="edit-customer">
+            <form action="editcustomer" method="POST">
+                <p><span style="color: blue">Edit </span><span style="color: green">Customer</span></p>
+                <table border="1px">
+                    <tr>
+                        <td>
+                            Id:
+                        </td>
+                        <td>
+                            <%=c.getId()%> <input type="hidden" name="id" value="<%=c.getId()%>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            <input type="text" name="name" value="<%=c.getName()%>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Phone:
+                        </td>
+                        <td>
+                            <input type="text" name="phone" value="<%=c.getPhone()%>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Staff:
+                        </td>
+                        <td>
+                            <select name="sid">
+                                <% for (Staff s : staffs) {
+                                %>
+                                <option  
+                                    <%=(c.getStaff().getId() == s.getId()) ? "selected=\"selected\"" : ""%>
+                                    value="<%=s.getId()%>"><%=s.getName()%></option>
+                                <%}%>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Save" class="save"/>
+            </form>
+
+        </div>
         <div class="footer">
 
             <p>Address: 167 Tran Dang Ninh, Dich Vong Ward, Cau Giay District, Hanoi City </p>
@@ -47,5 +93,5 @@
 
         </div>
     </body>
-</html>>
+</html>
 

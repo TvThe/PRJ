@@ -3,22 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.customer;
+package controller.document;
 
 import controller.auth.BaseAuthenticationController;
-import dal.CustomerDBContext;
+import dal.DocumentDBContext;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DeleteCustomer extends BaseAuthenticationController {
+/**
+ *
+ * @author LENNOVO
+ */
+public class DeleteDocument extends BaseAuthenticationController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        CustomerDBContext db = new CustomerDBContext();
-        db.deleteCustomer(id);
+        DocumentDBContext db = new DocumentDBContext();
+        db.deleteDocument(id);
         response.sendRedirect("searchcustomer");
     }
 

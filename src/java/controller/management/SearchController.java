@@ -1,17 +1,17 @@
 package controller.management;
 
+import controller.auth.BaseAuthenticationController;
 import dal.DepartmentDBContext;
 import dal.StaffDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Department;
 import model.Staff;
 
-public class SearchController extends HttpServlet {
+public class SearchController extends BaseAuthenticationController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,21 +21,21 @@ public class SearchController extends HttpServlet {
         String raw_did = request.getParameter("did");
         raw_did = (raw_did==null || raw_did.length() ==0)?"-1":raw_did;
         int did = Integer.parseInt(raw_did);
-        StaffDBContext dbStudent = new StaffDBContext();
-        ArrayList<Staff> staffs = dbStudent.getStaff(did);
+        StaffDBContext dbStaff = new StaffDBContext();
+        ArrayList<Staff> staffs = dbStaff.getStaff(did);
         request.setAttribute("staffs", staffs);
         request.setAttribute("did", did);
         request.getRequestDispatcher("view/Staff/staff.jsp").forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

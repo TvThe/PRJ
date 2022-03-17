@@ -1,28 +1,24 @@
 <%-- 
-    Document   : edit
-    Created on : Feb 10, 2022, 1:06:01 PM
-    Author     : SAP-LAP-FPT
+    Document   : insert
+    Created on : Feb 8, 2022, 2:50:32 PM
+    Author     : Sap-lap
 --%>
 
-<%@page import="model.Staff"%>
+<%@page import="model.Customer"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Page</title>
+        <title>Add Document Page</title>
         <%
-            ArrayList<Department> depts
-                    = (ArrayList<Department>) request.getAttribute("depts");
-
-            Staff s = (Staff) request.getAttribute("staff");
+            ArrayList<Customer> customers
+                    = (ArrayList<Customer>) request.getAttribute("customers");
         %>
     </head>
     <body>
-        
         <div class="header-home">
             <div class="logo">
                 <img src="image/logo.png">
@@ -34,74 +30,57 @@
                     <li><a href="#">Introduce</a></li>
                     <li><a href="#">Support</a></li>
                     <li><a href="search">Staff</a></li>
-                    <li><a href="insert">Add Staff</a></li>
                     <li><a href="searchcustomer">Customer</a></li>
                     <li><a href="login"> Log Out</a></li>
                 </ul>
             </div>
         </div>
         
-        <div class="edit-staff">
-            <p><span style="color: red">Edit</span> <span style="color: blue">Staff</span></p>
+        <div class="insert-document">
+            <p><span style="color: red">Insert</span><span style="color: blue"> Document</span></p>
             <div class="table">
-                
-        <form action="edit" method="POST">
+        <form action="insertdocument" method="POST">
             <table border="1px">
-                <tr>
-                    <td>
-                        Id:
-                    </td>
-                    <td>
-                        <%=s.getId()%> <input type="hidden" name="id" value="<%=s.getId()%>"/>
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         Name:
                     </td>
                     <td>
-                        <input type="name" name="name" value="<%=s.getName()%>" class="input"/>
+                        <input type="text" name="name" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Gender:
+                        Page:
                     </td>
                     <td>
-                        <input type="radio" <%=s.isGender() ? "checked=\"checked\"" : ""%> value="male" name="gender" class="gender"/> Male 
-                        <input type="radio" value="female" <%=!s.isGender() ? "checked=\"checked\"" : ""%> name="gender" class="gender"/> Female <br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Phone:
-                    </td>
-                    <td>
-                        <input type="text" name="phone" value="<%=s.getPhone()%>" class="input" />
+                        <input type="text" name="page"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Department:
+                        Price:
                     </td>
                     <td>
-                        <select name="did">
-                            <% for (Department d : depts) {
+                        <input type="text" name="price"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Customer ID:
+                    </td>
+                    <td>
+                        <select name="cid">
+                            <% for (Customer c : customers) {
                             %>
-                            <option  
-                                <%=(s.getDept().getId() == d.getId()) ? "selected=\"selected\"" : ""%>
-                                value="<%=d.getId()%>"><%=d.getName()%></option>
+                            <option value="<%=c.getId()%>"><%=c.getId()%></option>
                             <%}%>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        <input type="submit" value="Save" class="save"/>
-                    </td>
+                    <td></td>
+                    <td><button>Save</button></td>
                 </tr>
             </table>
         </form>

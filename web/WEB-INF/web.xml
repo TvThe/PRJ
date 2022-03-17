@@ -33,8 +33,16 @@
         <servlet-class>controller.customer.EditCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteCustomer</servlet-name>
-        <servlet-class>controller.customer.DeleteCustomer</servlet-class>
+        <servlet-name>SearchDocument</servlet-name>
+        <servlet-class>controller.document.SearchDocument</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDocument</servlet-name>
+        <servlet-class>controller.document.DeleteDocument</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertDocument</servlet-name>
+        <servlet-class>controller.document.InsertDocument</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AuthenticController</servlet-name>
@@ -69,8 +77,16 @@
         <url-pattern>/editcustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteCustomer</servlet-name>
-        <url-pattern>/deletecustomer</url-pattern>
+        <servlet-name>SearchDocument</servlet-name>
+        <url-pattern>/searchdocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDocument</servlet-name>
+        <url-pattern>/deletedocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertDocument</servlet-name>
+        <url-pattern>/insertdocument</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

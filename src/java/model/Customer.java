@@ -11,6 +11,9 @@ package model;
  */
 public class Customer {
     private int id;
+    private String name;
+    private String phone;
+    private Staff staff;
 
     public int getId() {
         return id;
@@ -19,9 +22,6 @@ public class Customer {
     public void setId(int id) {
         this.id = id;
     }
-    private String name;
-    private String phone;
-    private Staff staff;
 
     public String getName() {
         return name;
