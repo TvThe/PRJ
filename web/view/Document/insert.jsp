@@ -19,7 +19,8 @@
         %>
     </head>
     <body>
-        <div class="header-home">
+        <div class="container">
+        <div class="header">
             <div class="logo">
                 <img src="image/logo.png">
                 <p><span style="color:red">Dịch</span> <span style="color:green ">Thuật</span><span style="color:blue"> Linh</span> <span style="color:yellow">Anh</span></p>
@@ -36,17 +37,17 @@
             </div>
         </div>
         
-        <div class="insert-document">
-            <p><span style="color: red">Insert</span><span style="color: blue"> Document</span></p>
+        <div class="body">
+            <p style="font-size: 30px;"><span style="color: red">Insert</span><span style="color: blue"> Document</span></p>
             <div class="table">
         <form action="insertdocument" method="POST">
-            <table border="1px">
+            <table border="1px" style="margin-left: 730px; font-size: 30px;">
                 <tr>
                     <td>
                         Name:
                     </td>
                     <td>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" style="margin-bottom: 6px; padding: 4px; margin-left: 10px; margin-right: 10px;"/>
                     </td>
                 </tr>
                 <tr>
@@ -54,7 +55,7 @@
                         Page:
                     </td>
                     <td>
-                        <input type="text" name="page"/>
+                        <input type="text" name="page" style="margin-bottom: 6px; padding: 4px; margin-left: 10px; margin-right: 10px;"/>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +63,7 @@
                         Price:
                     </td>
                     <td>
-                        <input type="text" name="price"/>
+                        <input type="text" name="price" style="margin-bottom: 6px; padding: 4px; margin-left: 10px; margin-right: 10px;"/>
                     </td>
                 </tr>
                 <tr>
@@ -70,7 +71,7 @@
                         Customer ID:
                     </td>
                     <td>
-                        <select name="cid">
+                        <select name="cid" style="margin-bottom: 6px; padding: 4px; margin-left: 10px; margin-right: 10px;">
                             <% for (Customer c : customers) {
                             %>
                             <option value="<%=c.getId()%>"><%=c.getId()%></option>
@@ -80,7 +81,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><button>Save</button></td>
+                    <td><button style="margin-bottom: 6px; padding: 4px 10px; margin-left: 10px; margin-right: 10px; border-radius: 10px;">Save</button></td>
                 </tr>
             </table>
         </form>
@@ -93,6 +94,7 @@
             <p>Hotline: 0987 039 663 - 0915 018 968</p>
             <p>Email : Linhanh.co@gmail.com  ||  Website: www.dichthuatlinhanh.com.vn</p>
 
+        </div>
         </div>
     </body>
 </html>

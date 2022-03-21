@@ -3,51 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.document;
+package controller.search;
 
-import controller.auth.BaseAuthenticationController;
 import dal.CustomerDBContext;
 import dal.DocumentDBContext;
+import dal.StaffDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Customer;
 import model.Document;
+import model.Staff;
 
-/**
- *
- * @author LENNOVO
- */
-public class SearchDocument extends BaseAuthenticationController {
+public class Search extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    }
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String raw_name = request.getParameter("search");
+        String name = "%" + raw_name + "%";
+        StaffDBContext dbStaff = new StaffDBContext();
+        ArrayList<Staff> staffs = dbStaff.getStaff(0);
+        request.setAttribute("staffs", staffs);
         CustomerDBContext dbCustomer = new CustomerDBContext();
-        ArrayList<Customer> customer = dbCustomer.getCustomer();
+        ArrayList<Customer> customer = dbCustomer.getCustomers(name);
+        Customer c = new Customer();
         request.setAttribute("customer", customer);
-        String raw_cid = request.getParameter("cid");
-        int cid = Integer.parseInt(raw_cid);
-        DocumentDBContext dbDocument = new DocumentDBContext();
-        ArrayList<Document> document = dbDocument.getDocument(cid);
-        request.setAttribute("document", document);
-        request.setAttribute("cid", cid);
-        request.getRequestDispatcher("/view/Document/document.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/Search/find.jsp").forward(request, response);
     }
 
     /**
@@ -59,10 +48,16 @@ public class SearchDocument extends BaseAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String payment = request.getParameter("payment");
-        request.setAttribute("payment", payment);
+        String raw_name = request.getParameter("search");
+        String name = "%" + raw_name + "%";
+        CustomerDBContext dbCustomer = new CustomerDBContext();
+        ArrayList<Customer> customer = dbCustomer.getCustomer(0);
+        request.setAttribute("customer", customer);
+        DocumentDBContext dbDoc = new DocumentDBContext();
+        ArrayList<Document> document = dbDoc.getDocument(name);
+        request.setAttribute("document", document);
         request.getRequestDispatcher("/view/Document/document.jsp").forward(request, response);
     }
 

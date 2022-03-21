@@ -32,10 +32,12 @@ public class EditCustomer extends BaseAuthenticationController {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String raw_cid =request.getParameter("id");
         String raw_name = request.getParameter("name");
         String raw_phone = request.getParameter("phone");
         String raw_sid = request.getParameter("sid");
         
+        int cid = Integer.parseInt(raw_cid);
         int sid = Integer.parseInt(raw_sid);
         String name = raw_name; //check length
         String phone = raw_phone;
@@ -43,6 +45,7 @@ public class EditCustomer extends BaseAuthenticationController {
         Staff s = new Staff();
         s.setId(sid);
         Customer c = new Customer();
+        c.setId(cid);
         c.setName(name);
         c.setPhone(phone);
         c.setStaff(s);

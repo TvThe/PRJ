@@ -133,8 +133,7 @@ public class StaffDBContext extends DBContext {
     public void insertStaff(Staff s)
     {
         String sql = "INSERT INTO [Staff]\n" +
-                        "           ([sid]\n" +
-                        "           ,[sname]\n" +
+                        "           ([sname]\n" +
                         "           ,[gender]\n" +
                         "           ,[phone]\n" +
                         "           ,[did])\n" +
@@ -142,16 +141,14 @@ public class StaffDBContext extends DBContext {
                         "           (?\n" +
                         "           ,?\n" +
                         "           ,?\n" +
-                        "           ,?\n" +
                         "           ,?)";
         PreparedStatement stm = null;
         try {
             stm = connection.prepareStatement(sql);
-            stm.setInt(1, s.getId());
-            stm.setString(2, s.getName());
-            stm.setBoolean(3, s.isGender());
-            stm.setString(4, s.getPhone());
-            stm.setInt(5, s.getDept().getId());
+            stm.setString(1, s.getName());
+            stm.setBoolean(2, s.isGender());
+            stm.setString(3, s.getPhone());
+            stm.setInt(4, s.getDept().getId());
             stm.executeUpdate(); //INSERT UPDATE DELETE
         } catch (SQLException ex) {
             Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);

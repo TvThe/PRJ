@@ -20,7 +20,8 @@
         %>
     </head>
     <body>
-        <div class="header-home">
+        <div class="container">
+        <div class="header">
             <div class="logo">
                 <img src="image/logo.png">
                 <p><span style="color:red">Dịch</span> <span style="color:green ">Thuật</span><span style="color:blue"> Linh</span> <span style="color:yellow">Anh</span></p>
@@ -36,16 +37,16 @@
                 </ul>
             </div>
         </div>
-        <div class="insert-customer">
+            <div class="body" style="font-size: 30px;">
             <form action="insertcustomer" method="POST">
-                <table border="1px" solid="red">
+                <table border="1px" style="margin-left: 810px;">
                     <p><span style="color:red">Insert </span><span style="color:blue">Customer</span></p>
                     <tr>
                         <td>
                             Name:
                         </td>
                         <td>
-                            <input type="name" name="name" /> <br/>
+                            <input type="name" name="name" style="height: 20px; margin: 3px;"/> <br/>
                         </td>
                     </tr>
                     <tr>
@@ -53,7 +54,7 @@
                             Phone:
                         </td>
                         <td>
-                            <input type="text" name="phone"/>
+                            <input type="text" name="phone" style="height: 20px; margin: 3px;"/>
                         </td>
                     </tr>
                     </tr>
@@ -62,18 +63,19 @@
                             Staff:
                         </td>
                         <td>
-                            <select name="sid">
+                            <select name="sid" style="font-size: 15px; padding: 2px 5px; margin: 3px;">
                                 <% for (Staff s : staffs) {
                                 %>
-                                <option value="<%=s.getId()%>"><%=s.getName()%></option>
+                                <option value="<%=s.getId()%>" ><%=s.getName()%></option>
                                 <%}%>
                             </select>   
                         </td>
                     </tr>
                 </table>
-                <input type="submit" value="Save" class="save"/>
+                            <input type="submit" value="Save" class="save" style="padding: 10px 15px;margin-top: 20px; border-radius: 10px; font-size: 20px;"/>
             </form>
         </div>
+                            </div>
         <div class="footer">
 
             <p>Address: 167 Tran Dang Ninh, Dich Vong Ward, Cau Giay District, Hanoi City </p>
@@ -81,6 +83,7 @@
             <p>Hotline: 0987 039 663 - 0915 018 968</p>
             <p>Email : Linhanh.co@gmail.com  ||  Website: www.dichthuatlinhanh.com.vn</p>
 
+        </div>
         </div>
     </body>
 </html>

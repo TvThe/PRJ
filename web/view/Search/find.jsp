@@ -91,11 +91,6 @@
                 <a href="insertcustomer" class="add" style="background: bisque; color: black; text-decoration: none; border-radius: 8px; padding:5px 5px;">
                 New Customer</a>
         </div>
-        <div id="paggerbot" class="container1"> </div>
-        <script class="pagger">
-            pagger('paggerbot',<%=pageindex%>,<%=totalpage%>, 2);
-        </script>
-            </div>
         <div class="footer">
 
             <p>Address: 167 Tran Dang Ninh, Dich Vong Ward, Cau Giay District, Hanoi City </p>

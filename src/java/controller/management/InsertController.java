@@ -31,13 +31,11 @@ public class InsertController extends BaseAuthenticationController {
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String raw_id = request.getParameter("id");
         String raw_name = request.getParameter("name");
         String raw_gender = request.getParameter("gender");
         String raw_phone = request.getParameter("phone");
         String raw_did = request.getParameter("did");
 
-        int id = Integer.parseInt(raw_id);
         int did = Integer.parseInt(raw_did);
         String name = raw_name; //check length
         boolean gender = raw_gender.equals("male");
@@ -46,7 +44,6 @@ public class InsertController extends BaseAuthenticationController {
         Department d = new Department();
         d.setId(did);
         Staff s = new Staff();
-        s.setId(id);
         s.setName(name);
         s.setGender(gender);
         s.setPhone(phone);

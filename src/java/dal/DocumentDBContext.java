@@ -15,6 +15,60 @@ import model.Customer;
 import model.Document;
 
 public class DocumentDBContext extends DBContext {
+    public ArrayList<Document> getDocument(String name)
+    {
+        ArrayList<Document> document = new ArrayList<>();
+        try {
+            String sql = "SELECT dc.dcid, dc.dcname,dc.page,dc.[price/1page], c.cname, c.cid FROM Document dc INNER JOIN Customer c ON dc.cid = c.cid where dc.dcname like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, name);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Document dc = new Document();
+                dc.setId(rs.getInt("dcid"));
+                dc.setName(rs.getString("dcname"));
+                dc.setPages(rs.getInt("page"));
+                dc.setPrice(rs.getInt("price/1page"));
+                Customer c = new Customer();
+                c.setId(rs.getInt("cid"));
+                c.setName(rs.getString("cname"));
+                dc.setCustomer(c);
+                document.add(dc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return document;
+    }
+
+    public ArrayList<Document> getDocument(int pageindex, int pagesize) {
+        ArrayList<Document> document = new ArrayList<>();
+        try {
+            String sql = "select * from (SELECT dc.dcid,c.cid,c.cname,dc.dcname,dc.page, dc.[price/1page], ROW_NUMBER() over (order by dcid asc) as row_index from Document dc INNER JOIN Customer c ON dc.cid = c.cid) dc\n"
+                    + "where row_index >= ((@pageindex-1)*@pagesize+1) and row_index <= (@pageindex*@pagesize)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pageindex);
+            stm.setInt(2, pagesize);
+            stm.setInt(3, pageindex);
+            stm.setInt(4, pagesize);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Document dc = new Document();
+                dc.setId(rs.getInt("dcid"));
+                dc.setName(rs.getString("dcname"));
+                dc.setPages(rs.getInt("page"));
+                dc.setPrice(rs.getInt("[price/1page]"));
+                Customer c = new Customer();
+                c.setId(rs.getInt("cid"));
+                c.setName(rs.getString("cname"));
+                dc.setCustomer(c);
+                document.add(dc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return document;
+    }
 
     public ArrayList<Document> getDocument() {
         ArrayList<Document> document = new ArrayList<>();
@@ -34,7 +88,7 @@ public class DocumentDBContext extends DBContext {
                 document.add(dc);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DepartmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return document;
     }
@@ -57,7 +111,7 @@ public class DocumentDBContext extends DBContext {
                 return dc;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -87,7 +141,7 @@ public class DocumentDBContext extends DBContext {
                 documents.add(dc);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return documents;
     }
@@ -109,20 +163,20 @@ public class DocumentDBContext extends DBContext {
             stm.setInt(4, dc.getCustomer().getId());
             stm.executeUpdate(); //INSERT UPDATE DELETE
         } catch (SQLException ex) {
-            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stm != null) {
                 try {
                     stm.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -137,20 +191,20 @@ public class DocumentDBContext extends DBContext {
             stm.setInt(1, id);
             stm.executeUpdate(); //INSERT UPDATE DELETE
         } catch (SQLException ex) {
-            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stm != null) {
                 try {
                     stm.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -176,22 +230,38 @@ public class DocumentDBContext extends DBContext {
             stm.setInt(4, dc.getCustomer().getId());
             stm.executeUpdate(); //INSERT UPDATE DELETE
         } catch (SQLException ex) {
-            Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stm != null) {
                 try {
                     stm.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StaffDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DocumentDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
+    }
+    public int countDocument(int id)
+    {
+        try {
+            String sql = "select count(*) as total from Document dc INNER JOIN Customer c ON dc.cid = c.cid where c.cid =? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }

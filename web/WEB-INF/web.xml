@@ -44,6 +44,14 @@
         <servlet-name>InsertDocument</servlet-name>
         <servlet-class>controller.document.InsertDocument</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>controller.search.Search</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchPhp</servlet-name>
+        <servlet-class>controller.document.Search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthenticController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>InsertDocument</servlet-name>
         <url-pattern>/insertdocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/searchinfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPhp</servlet-name>
+        <url-pattern>/searchphp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
